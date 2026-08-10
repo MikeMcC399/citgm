@@ -9,11 +9,11 @@ on:
       repository:
         description: 'CITGM repository to checkout'
         required: true
-        default: nodejs/citgm
+        default: MikeMcC399/citgm
       ref:
         description: 'CITGM GitHub ref to checkout'
         required: true
-        default: main
+        default: prime
 
 jobs:
   show-parameters:
