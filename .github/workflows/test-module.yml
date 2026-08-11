@@ -39,6 +39,7 @@ jobs:
           - 22.x
           - 24.x
           - 26.x
+          - latest
 
     runs-on: ${{ matrix.os }}
 
@@ -55,6 +56,10 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           check-latest: true
+
+      - name: Install npm latest for Node.js latest
+        if: matrix.node-version == 'latest'
+        run: npm install -g npm@latest
 
       - name: Install packages
         run: npm ci
