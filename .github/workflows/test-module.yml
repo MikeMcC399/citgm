@@ -9,11 +9,11 @@ on:
       repository:
         description: 'CITGM repository to checkout'
         required: true
-        default: nodejs/citgm
+        default: MikeMcC399/citgm
       ref:
         description: 'CITGM GitHub ref to checkout'
         required: true
-        default: main
+        default: prime
 
 jobs:
   show-parameters:
@@ -39,21 +39,27 @@ jobs:
           - 22.x
           - 24.x
           - 26.x
+          - latest
 
     runs-on: ${{ matrix.os }}
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
         with:
           repository: ${{ github.event.inputs.repository }}
           ref: ${{ github.event.inputs.ref }}
           show-progress: false
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v7
         with:
           node-version: ${{ matrix.node-version }}
+          check-latest: true
+
+      - name: Install npm latest for Node.js latest
+        if: matrix.node-version == 'latest'
+        run: npm install -g npm@latest
 
       - name: Install packages
         run: npm ci
