@@ -31,12 +31,37 @@ jobs:
         run: npm run lint
 
   test:
-    name: Test
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - macos-latest
+          - ubuntu-latest
+          - windows-latest
+        node-version:
+          - 22
+          - 24
+          - 26
+          - latest
 
-    uses: pkgjs/action/.github/workflows/node-test.yaml@v0.1
-    with:
-      runs-on: ubuntu-latest, macos-latest, windows-latest
-      test-command: npm run tap -- --coverage-report=lcov
-      post-test-steps: |
-        - name: Coverage Report
-          uses: codecov/codecov-action@fb8b3582c8e4def4969c97caa2f19720cb33a72f  # v7.0.0
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ matrix.node-version }}
+          check-latest: true
+
+      - name: Install npm latest for Node.js latest
+        if: matrix.node-version == 'latest'
+        run: npm install -g npm@latest
+
+      - name: Install packages
+        run: npm ci
+
+      - name: Run tests
+        run: npm run tap
