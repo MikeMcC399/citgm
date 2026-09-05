@@ -45,7 +45,7 @@
   },
   "JSONStream": {
     "prefix": "v",
-    "skip": "win32",
+    "skip": ["darwin", "win32", "win32-arm64"],
     "maintainers": "dominictarr",
     "envVar": {
       "npm_config_allow_git": "all"
