@@ -1,0 +1,54 @@
+name: Known failures
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  package-test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          # - macos-latest
+          - ubuntu-latest
+          # - windows-latest
+        node-version:
+          # - 22.x
+          - 24.x
+          # - 26.x
+          # - latest
+        package:
+          - '@babel/core'
+          - '@yarnpkg/cli'
+          - ava
+          - clinic
+          - fastify
+          - jest
+          - node-gyp
+          - pino
+          - readable-stream
+          - uuid
+          - weak
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ matrix.node-version }}
+          check-latest: true
+
+      - name: Install npm latest for Node.js latest
+        if: matrix.node-version == 'latest'
+        run: npm install -g npm@latest
+
+      - name: Install packages
+        run: npm ci
+
+      - name: Run CITGM
+        run: node bin/citgm.js ${{ matrix.package }}
