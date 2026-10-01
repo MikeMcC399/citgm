@@ -449,7 +449,8 @@
   "uuid": {
     "prefix": "v",
     "maintainers": ["ctavan", "broofa"],
-    "skip": ["win32", "aix"]
+    "skip": ["win32", "aix"],
+    "envVar": { "GIT_DISCOVERY_ACROSS_FILESYSTEM": "1" }
   },
   "vinyl": {
     "prefix": "v",
