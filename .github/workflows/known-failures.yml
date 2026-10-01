@@ -4,7 +4,6 @@ on:
   workflow_dispatch:
 
 jobs:
-
   package-test:
     strategy:
       fail-fast: false
