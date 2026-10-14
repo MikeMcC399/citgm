@@ -221,7 +221,7 @@
     "yarn": true,
     "head": true,
     "install": ["install", "--no-immutable"],
-    "scripts": ["build:js", "remove-examples", "test-ci-partial"],
+    "scripts": ["build:js", "remove-examples", "test-ci-partial:parallel"],
     "envVar": { "CI": true },
     "skip": ["aix", "s390x", "ppc", "darwin", "win32"],
     "timeout": 1800000
