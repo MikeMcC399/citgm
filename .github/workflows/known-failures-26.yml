@@ -1,4 +1,4 @@
-name: Known failures
+name: Known failures 26
 
 on:
   workflow_dispatch:
@@ -10,26 +10,27 @@ jobs:
       matrix:
         package:
           - '@babel/core'
+          - '@yarnpkg/cli'
           - ava
-          - clinic
+          - body-parser
+          - compression
           - fastify
           - jest
-          - node-gyp
-          - pino
-          - readable-stream
-          - uuid
-          - weak
+          - lru-cache
+          - on-finished
+          - path-to-regexp
+          - undici
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v7
 
-      - name: Use Node.js 24
+      - name: Use Node.js 26
         uses: actions/setup-node@v7
         with:
-          node-version: 24
+          node-version: 26
           check-latest: true
 
       - name: Install packages
