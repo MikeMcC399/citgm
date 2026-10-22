@@ -9,17 +9,17 @@ jobs:
       fail-fast: false
       matrix:
         package:
-          - '@babel/core'
-          - '@yarnpkg/cli'
-          - ava
-          - body-parser
+          - '@babel/core' # needs right skip
+          - '@yarnpkg/cli' # ESLint outdated
+          - ava # pnpm repository normalization
+          - body-parser # release is planned
           - compression
-          - fastify
+          # - fastify # nofailure
           - jest
-          - lru-cache
-          - on-finished
-          - path-to-regexp
-          - undici
+          - lru-cache # flaky
+          # - on-finished # fixed in 2.4.2
+          # - path-to-regexp # timeout in Jenkins, no repro in GitHub Actions
+          # - undici # only fails in Windows
 
     runs-on: ubuntu-26.04
 
