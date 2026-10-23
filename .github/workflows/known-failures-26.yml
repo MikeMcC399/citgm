@@ -18,7 +18,7 @@ jobs:
           - jest
           - lru-cache # flaky
           # - on-finished # fixed in 2.4.2
-          # - path-to-regexp # timeout in Jenkins, no repro in GitHub Actions
+          # - path-to-regexp # fixed
           # - undici # only fails in Windows
 
     runs-on: ubuntu-26.04
