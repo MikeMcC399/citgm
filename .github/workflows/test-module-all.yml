@@ -1,4 +1,4 @@
-name: Test a module with CITGM using lookup settings
+name: Module test (lookup)
 
 on:
   workflow_dispatch:
