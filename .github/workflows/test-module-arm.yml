@@ -1,4 +1,4 @@
-name: Module test arm
+name: Module test (arm)
 
 on:
   workflow_dispatch:
