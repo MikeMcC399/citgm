@@ -39,7 +39,7 @@ jobs:
           - 22.x
           - 24.x
           - 26.x
-          - 27-nightly
+          - latest
 
     runs-on: ${{ matrix.os }}
 
