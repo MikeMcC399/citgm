@@ -36,10 +36,10 @@ jobs:
           - ubuntu-latest
           - windows-latest
         node-version:
-          - 22.x
-          - 24.x
-          - 26.x
-          - latest
+          - 22
+          - 24
+          - 26
+          - 27
 
     runs-on: ${{ matrix.os }}
 
@@ -52,10 +52,11 @@ jobs:
           show-progress: false
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v7.1.0
+        uses: MikeMcC399/setup-node@allow-alpha-input
         with:
           node-version: ${{ matrix.node-version }}
           check-latest: true
+          allow-alpha: true
 
       - name: Install packages
         run: npm ci
