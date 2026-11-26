@@ -40,6 +40,7 @@ jobs:
           - 24
           - 26
           - 27
+          - 28-nightly
 
     runs-on: ${{ matrix.os }}
 
